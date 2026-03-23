@@ -1,5 +1,6 @@
 import { db } from "../../config/db";
 import { Order } from "../../types/order";
+import { broadcast } from "../../sockets/socket.manager";
 
 const ordersCollection = db.collection<Order>("orders");
 
@@ -12,12 +13,26 @@ export const createOrder = async (order: Order) => {
 
   const result = await ordersCollection.insertOne(newOrder);
 
-  // 👇 simulación de ejecución (fintech style)
+  // 🔥 evento creación
+  broadcast({
+    type: "ORDER_CREATED",
+    orderId: result.insertedId,
+    symbol: order.symbol,
+  });
+
+  // 👇 simulación ejecución
   setTimeout(async () => {
     await ordersCollection.updateOne(
       { _id: result.insertedId },
       { $set: { status: "filled" } }
     );
+
+    // 🔥 evento ejecución
+    broadcast({
+      type: "ORDER_FILLED",
+      orderId: result.insertedId,
+      symbol: order.symbol,
+    });
   }, 3000);
 
   return result.insertedId;

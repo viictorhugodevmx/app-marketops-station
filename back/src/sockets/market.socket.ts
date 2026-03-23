@@ -1,7 +1,10 @@
 import { WebSocketServer } from "ws";
+import { setWSS } from "./socket.manager";
 
 export const initMarketSocket = (server: any) => {
   const wss = new WebSocketServer({ server });
+
+  setWSS(wss);
 
   console.log("📡 WebSocket server started");
 
@@ -11,14 +14,13 @@ export const initMarketSocket = (server: any) => {
     let price = 50000;
 
     const interval = setInterval(() => {
-      // Simulación de precio
       price += (Math.random() - 0.5) * 100;
 
       ws.send(
         JSON.stringify({
+          type: "MARKET_UPDATE",
           symbol: "BTC",
           price: Number(price.toFixed(2)),
-          timestamp: new Date(),
         })
       );
     }, 2000);
