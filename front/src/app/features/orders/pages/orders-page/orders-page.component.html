@@ -1,0 +1,36 @@
+<h2>Create Order</h2>
+
+<div class="form">
+  <input [(ngModel)]="symbol" placeholder="Symbol" name="symbol"/>
+
+  <select [(ngModel)]="type" name="type">
+    <option value="buy">Buy</option>
+    <option value="sell">Sell</option>
+  </select>
+
+  <input
+    type="number"
+    [(ngModel)]="amount"
+    name="amount"
+  />
+
+  <button (click)="createOrder()">Submit</button>
+</div>
+
+<h3>My Orders</h3>
+
+<table>
+  <tr>
+    <th>Symbol</th>
+    <th>Type</th>
+    <th>Amount</th>
+    <th>Status</th>
+  </tr>
+
+  <tr *ngFor="let o of orders">
+    <td>{{ o.symbol }}</td>
+    <td>{{ o.type }}</td>
+    <td>{{ o.amount }}</td>
+    <td>{{ o.status }}</td>
+  </tr>
+</table>

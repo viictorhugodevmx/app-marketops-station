@@ -1,0 +1,17 @@
+<h2>Market Dashboard</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let item of market">
+      <td>{{ item.symbol }}</td>
+      <td>{{ item.price }}</td>
+    </tr>
+  </tbody>
+</table>
