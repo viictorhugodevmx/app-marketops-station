@@ -1,0 +1,21 @@
+<div class="login-container">
+
+  <div class="login-card">
+
+    <h2>MarketOps Login</h2>
+
+    <div class="form">
+      <input [(ngModel)]="email" placeholder="Email" />
+      <input [(ngModel)]="password" type="password" placeholder="Password" />
+
+      <button (click)="login()">Login</button>
+    </div>
+
+    <p class="register-link">
+      Don't have an account?
+      <a routerLink="/register">Register</a>
+    </p>
+
+  </div>
+
+</div>

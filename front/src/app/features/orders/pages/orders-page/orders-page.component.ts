@@ -18,8 +18,6 @@ export class OrdersPageComponent {
 
   orders: any[] = [];
 
-  // ⚠️ pega aquí tu token manual
-  token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWJkZTRlMjIxZGM5MzdjZjM1YTkzOWYiLCJpYXQiOjE3NzQzNzQ1MTIsImV4cCI6MTc3NDM3ODExMn0.BuPTixiXlLdpdeyFu4m0cn68AaREt9qQs2j6C4BCAfw';
 
   constructor(private ordersService: OrdersService) {}
 
@@ -33,19 +31,17 @@ export class OrdersPageComponent {
       symbol: this.symbol,
       type: this.type,
       amount: this.amount
-    }, this.token).subscribe(() => {
+    }).subscribe(() => {
       this.loadOrders();
 
-      // 👇 refresco automático
       setTimeout(() => {
         this.loadOrders();
       }, 3500);
-
     });
   }
 
   loadOrders() {
-    this.ordersService.getOrders(this.token).subscribe(data => {
+    this.ordersService.getOrders().subscribe(data => {
       this.orders = data;
     });
   }

@@ -1,0 +1,48 @@
+.summary {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.positive {
+  color: #22c55e;
+}
+
+.negative {
+  color: #ef4444;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-top: 10px;
+}
+
+th,
+td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #1e293b;
+  text-align: left;
+}
+
+th {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+td {
+  color: #e2e8f0;
+}
+
+/* 👇 alineación pro */
+th:nth-child(2),
+td:nth-child(2) {
+  text-align: right;
+}
+
+/* 👇 hover bonito */
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}

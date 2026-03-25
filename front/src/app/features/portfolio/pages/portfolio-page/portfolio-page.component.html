@@ -1,3 +1,34 @@
-<section>
-  <h2>Portfolio</h2>
-</section>
+<h2>Portfolio</h2>
+
+<div *ngIf="portfolio">
+
+  <div class="summary">
+    <div>Balance: {{ portfolio.balance }}</div>
+    <div>Total Value: {{ portfolio.totalValue }}</div>
+    <div
+      [class.positive]="portfolio.pnl > 0"
+      [class.negative]="portfolio.pnl < 0"
+    >
+      PnL: {{ portfolio.pnl }}
+    </div>
+  </div>
+
+  <h3>Positions</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let p of portfolio.positions">
+        <td>{{ p.symbol }}</td>
+        <td>{{ p.quantity }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

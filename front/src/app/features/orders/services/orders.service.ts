@@ -17,19 +17,11 @@ export class OrdersService {
 
   constructor(private http: HttpClient) {}
 
-  createOrder(order: CreateOrderDto, token: string): Observable<any> {
-    return this.http.post(this.api, order, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+  createOrder(order: CreateOrderDto): Observable<any> {
+    return this.http.post(this.api, order);
   }
 
-  getOrders(token: string): Observable<any[]> {
-    return this.http.get<any[]>(this.api, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+  getOrders(): Observable<any[]> {
+    return this.http.get<any[]>(this.api);
   }
 }
